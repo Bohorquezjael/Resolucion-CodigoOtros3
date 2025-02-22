@@ -1,5 +1,3 @@
-// Tenemos un li de productos
-
 const productos = [
 	{
 		nombre: "Zapato negro",
@@ -64,26 +62,13 @@ botonDeFiltro.onclick = function () {
 		productList.removeChild(productList.firstChild);
 	}
 
-	const texto = input.value;
+	// manejo la entrada de posibles valores en mayusculas
+	const texto = input.value.toLowerCase();
 	console.log(texto);
 	const productosFiltrados = filtrado(productos, texto);
 
-	for (let i = 0; i < productosFiltrados.length; i++) {
-		const container = document.createElement("div");
-		container.classList.add("producto");
-
-		const ti = document.createElement("p");
-		ti.classList.add("titulo");
-		ti.textContent = productosFiltrados[i].nombre;
-
-		const imagen = document.createElement("img");
-		imagen.setAttribute("src", productosFiltrados[i].img);
-
-		container.appendChild(ti);
-		container.appendChild(imagen);
-
-		productList.appendChild(container);
-	}
+	// remuevo codigo duplicado que se encontraba en displayProductos
+	displayProductos(productosFiltrados);
 };
 
 const filtrado = (productos = [], texto) => {
@@ -91,5 +76,3 @@ const filtrado = (productos = [], texto) => {
 		(item) => item.tipo.includes(texto) || item.color.includes(texto)
 	);
 };
-
-
